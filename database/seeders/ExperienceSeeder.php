@@ -2,14 +2,14 @@
 
 namespace Database\Seeders;
 
-use App\Models\Education;
+use App\Models\Experience;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class EducationSeeder extends Seeder
+class ExperienceSeeder extends Seeder
 {
     public function run(): void
     {
-        Education::factory()->count(10)->create();
+        Experience::factory()->count(10)->create();
     }
 }
