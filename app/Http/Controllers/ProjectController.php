@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
-use App\Models\User;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -23,7 +22,7 @@ class ProjectController extends Controller
      */
     public function store(Request $request): \Illuminate\Http\JsonResponse
     {
-        $project = User::factory()->create([
+        $project = Project::factory()->create([
             'user_id' => $request->user()->id,
             'name' => $request['name'],
             'description' => $request['description'],
@@ -39,11 +38,8 @@ class ProjectController extends Controller
 
     /**
      * Display the specified resource.
-     * @param Project $project
-     * @param $id
-     * @return \Illuminate\Http\JsonResponse
      */
-    public function show(Project $project, $id): \Illuminate\Http\JsonResponse
+    public function show(string $id): \Illuminate\Http\JsonResponse
     {
         $project = Project::query()->findOrFail($id);
         return response()->json($project);
