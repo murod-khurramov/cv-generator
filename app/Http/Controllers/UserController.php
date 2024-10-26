@@ -97,9 +97,4 @@ class UserController extends Controller
             'status' => 'success',
         ]);
     }
-
-    public function login(Request $request): \Illuminate\Http\JsonResponse
-    {
-
-    }
 }
