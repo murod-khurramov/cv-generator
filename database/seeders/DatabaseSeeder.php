@@ -15,11 +15,8 @@ class DatabaseSeeder extends Seeder
             EducationSeeder::class,
             ExperienceSeeder::class,
             LanguageSeeder::class,
-            LanguageUserSeeder::class,
             SkillSeeder::class,
-            SkillUserSeeder::class,
             SocialNetworkSeeder::class,
-            SocialNetworkUserSeeder::class,
         ]);
     }
 }

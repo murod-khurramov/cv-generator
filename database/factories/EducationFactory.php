@@ -18,7 +18,7 @@ class EducationFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::factory(),
+            'user_id' => User::inRandomOrder()->first()->id,
             'name' => $this->faker->name(),
             'description' => $this->faker->text(),
             'start_date' => $this->faker->date(),
