@@ -22,7 +22,7 @@ class ProjectController extends Controller
      */
     public function store(Request $request): \Illuminate\Http\JsonResponse
     {
-        $project = Project::factory()->create([
+        Project::factory()->create([
             'user_id' => $request->user()->id,
             'name' => $request['name'],
             'description' => $request['description'],
@@ -35,7 +35,6 @@ class ProjectController extends Controller
             'status' => 'success',
         ], 201);
     }
-
     /**
      * Display the specified resource.
      */
