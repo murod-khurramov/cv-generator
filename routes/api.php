@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EducationController;
+use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -13,3 +14,5 @@ Route::resource('/projects', ProjectController::class)
     ->middleware('auth:sanctum');
 
 Route::resource('/educations', EducationController::class);
+
+Route::resource('/experiences', ExperienceController::class);
