@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('languages', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->default('Unnamed');
             $table->enum('level', ['A1', 'A2', 'B1', 'B2', 'C1', 'C2']);
             $table->timestamps();
         });
