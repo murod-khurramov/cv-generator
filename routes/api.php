@@ -5,6 +5,7 @@ use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\SkillController;
+use App\Http\Controllers\SocialNetworkController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -22,3 +23,5 @@ Route::resource('/experiences', ExperienceController::class);
 Route::resource('/languages', LanguageController::class);
 
 Route::resource('/skills', SkillController::class);
+
+Route::resource('/socialNetworks', SocialNetworkController::class);

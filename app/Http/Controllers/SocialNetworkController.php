@@ -10,9 +10,9 @@ class SocialNetworkController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): \Illuminate\Database\Eloquent\Collection
     {
-        //
+        return SocialNetwork::all();
     }
 
     /**
@@ -26,40 +26,63 @@ class SocialNetworkController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): \Illuminate\Http\JsonResponse
     {
-        //
+        $network = SocialNetwork::query()->create([
+            'name' => $request['name'],
+            'link' => $request['link'],
+        ]);
+
+        return response()->json([
+            'message' => 'Network created successfully',
+            'status' => 'success',
+        ]);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(SocialNetwork $socialNetwork)
+    public function show(string $id): \Illuminate\Http\JsonResponse
     {
-        //
+        return response()->json([SocialNetwork::query()->findOrFail($id)]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(SocialNetwork $socialNetwork)
+    public function edit(string $id)
     {
-        //
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, SocialNetwork $socialNetwork)
+    public function update(Request $request, string $id): \Illuminate\Http\JsonResponse
     {
-        //
+        $network = SocialNetwork::query()->findOrFail($id);
+        $network->update([
+            'name' => $request['name'],
+            'link' => $request['link'],
+        ]);
+
+        return response()->json([
+            'message' => 'Network updated successfully',
+            'status' => 'success',
+        ]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(SocialNetwork $socialNetwork)
+    public function destroy(string $id): \Illuminate\Http\JsonResponse
     {
-        //
+        $network = SocialNetwork::query()->findOrFail($id);
+        $network->delete();
+
+        return response()->json([
+            'message' => 'Network deleted successfully',
+            'status' => 'success',
+        ]);
     }
 }
