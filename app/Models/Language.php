@@ -14,4 +14,9 @@ class Language extends Model
         'name',
         'level',
     ];
+
+    public function users(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 }

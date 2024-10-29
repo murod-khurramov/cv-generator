@@ -14,4 +14,9 @@ class SocialNetwork extends Model
         'name',
         'link'
     ];
+
+    public function users(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'social_network_user', 'social_network_id', 'user_id');
+    }
 }

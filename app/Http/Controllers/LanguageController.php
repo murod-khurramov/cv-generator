@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Language;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class LanguageController extends Controller
@@ -84,5 +85,11 @@ class LanguageController extends Controller
             'message' => 'Language deleted successfully',
             'status' => 'success',
         ]);
+    }
+
+    public function attachLanguage(Request $request, $user_id): \Illuminate\Http\JsonResponse
+    {
+        $user = User::query()->findOrFail($user_id);
+
     }
 }

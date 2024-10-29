@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Skill;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class SkillController extends Controller
@@ -80,6 +81,36 @@ class SkillController extends Controller
 
         return response()->json([
             'message' => 'Skill deleted successfully',
+            'status' => 'success',
+        ]);
+    }
+
+    public function attachSkill(Request $request, $user_id): \Illuminate\Http\JsonResponse
+    {
+        $user = Skill::query()->findOrFail($user_id);
+        $skillId = $request['skill_id'];
+        $user->skill()->attach($skillId, [
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        return response()->json([
+            'message' => 'Skill attached successfully',
+            'status' => 'success',
+            'skill_id' => $skillId,
+        ]);
+    }
+    /**
+     * Detach a skill from a user.
+     */
+    public function detachSkill(Request $request, $user_id): \Illuminate\Http\JsonResponse
+    {
+        $user = User::query()->findOrFail($user_id);
+        $skillId = $request['skill_id'];
+        $user->skills()->detach($skillId);
+
+        return response()->json([
+            'message' => 'Skill detached successfully',
             'status' => 'success',
         ]);
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\SocialNetwork;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class SocialNetworkController extends Controller
@@ -82,6 +83,42 @@ class SocialNetworkController extends Controller
 
         return response()->json([
             'message' => 'Network deleted successfully',
+            'status' => 'success',
+        ]);
+    }
+
+    /**
+     * Attach a social network to a user.
+     */
+    public function attachSocialNetwork(Request $request, $user_id): \Illuminate\Http\JsonResponse
+    {
+        $user = User::query()->findOrFail($user_id);
+        $socialNetworkId = $request['social_network_id'];
+        $username = $request['username'];
+
+        $user->social_networks()->attach($socialNetworkId, [
+            'username' => $username,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        return response()->json([
+            'message' => 'Network added successfully',
+            'status' => 'success',
+        ]);
+    }
+
+    /**
+     * Detach a social network to a user.
+     */
+    public function detachSocialNetwork(Request $request, $user_id): \Illuminate\Http\JsonResponse
+    {
+        $user = User::query()->findOrFail($user_id);
+        $socialNetworkId = $request['social_network_id'];
+        $user->social_networks()->detach($socialNetworkId);
+
+        return response()->json([
+            'message' => 'Network removed successfully',
             'status' => 'success',
         ]);
     }

@@ -17,4 +17,9 @@ class Project extends Model
         'source_link',
         'demo_link',
     ];
+
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 }

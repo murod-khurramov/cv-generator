@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use Database\Factories\EducationFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Education extends Model
 {
-    /** @use HasFactory<\Database\Factories\EducationFactory> */
+    /** @use HasFactory<EducationFactory> */
     use HasFactory;
 
     protected $fillable = [
@@ -17,4 +18,9 @@ class Education extends Model
         'start_date',
         'end_date',
     ];
+
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 }
