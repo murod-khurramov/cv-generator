@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Experience;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Laravel\Sanctum\Sanctum;
@@ -26,7 +27,7 @@ class ExperienceControllerTest extends TestCase
         $response = $this->getJson('/api/experiences');
 
         $response->assertStatus(200)
-            ->assertJsonCount(4);
+            ->assertJsonCount(10);
     }
 
     public function test_a_experience_can_be_retrieved()

@@ -59,7 +59,7 @@ class ProjectControllerTest extends TestCase
         ]);
 
         $response->assertStatus(201)
-            ->assertJsonFragment(['message' => 'project created successfully']);
+            ->assertJsonFragment(['message' => 'Project created successfully']);
     }
 
     public function test_a_project_can_be_updated()
@@ -73,7 +73,7 @@ class ProjectControllerTest extends TestCase
         ]);
 
         $response->assertStatus(200)
-            ->assertJsonFragment(['message' => 'project updated successfully']);
+            ->assertJsonFragment(['message' => 'Project updated successfully']);
     }
 
     public function test_a_project_can_be_deleted()
@@ -81,6 +81,6 @@ class ProjectControllerTest extends TestCase
         $project = Project::factory()->create();
         $response = $this->deleteJson("/api/projects/{$project->id}");
         $response->assertStatus(200)
-            ->assertJsonFragment(['message' => 'project deleted successfully']);
+            ->assertJsonFragment(['message' => 'Project deleted successfully']);
     }
 }
